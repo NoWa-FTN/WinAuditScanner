@@ -1,0 +1,95 @@
+WinAuditScanner v1.0
+
+Auteur: NoWa-FTN
+Description: Script d'audit de sécurité pour les machines Windows
+Objectif: Collecter rapidement des informations utiles pour un audit local (reconnaissance, post-exploitation, légères analyses forensiques)
+Fonctionnalités principales
+
+Le script WinAuditScanner génère un rapport HTML détaillé sur la configuration d'un système Windows, comprenant une variété d'informations système et de sécurité, utiles pour l'analyse des vulnérabilités et des configurations à risque.
+Informations collectées
+
+    Informations système : Détails sur le système d'exploitation, la version, le BIOS, et les informations générales de la machine.
+
+    Utilisateurs locaux : Liste des utilisateurs locaux avec leurs états (activé/désactivé, dernier logon).
+
+    Groupes d'administrateurs : Membres du groupe 'Administrateurs'.
+
+    Logiciels installés : Liste des logiciels installés avec les informations de l'éditeur et de la date d'installation.
+
+    Services actifs : Liste des services en cours d'exécution.
+
+    Tâches planifiées personnalisées : Liste des tâches planifiées, en excluant celles de Microsoft.
+
+    Paramètres de sécurité : Analyse de la configuration UAC (Contrôle de Compte Utilisateur) et RDP (Remote Desktop Protocol).
+
+    Firewall et Windows Defender : Vérification de l'état du pare-feu et des paramètres de Windows Defender.
+
+    Logs de sécurité : Logs relatifs aux tentatives de connexion échouées (ID 4625).
+
+    Réseau : Informations réseau, y compris les interfaces, les serveurs DNS, et les connexions TCP établies.
+
+    Historique des fichiers récents : Liste des fichiers récemment ouverts.
+
+    Historique des commandes PowerShell : Liste des commandes PowerShell exécutées.
+
+    Registre et fichiers cachés : Recherche de fichiers et de paramètres cachés dans le système, incluant les clés du registre liées à la sécurité et les exécutables dans les répertoires temporaires.
+
+    Sessions RDP actives : Vérification des sessions RDP actives.
+
+    Politiques de sécurité du groupe (GPO) : Vérification de la configuration des politiques de sécurité du groupe.
+
+Sécurités supplémentaires :
+
+    Recherche de mots de passe : Le script recherche des mots de passe potentiels dans le registre, notamment dans les clés HKEY_CURRENT_USER et les profils NTUSER.DAT.
+
+    Contrôle des paramètres de BitLocker et SmartScreen : Vérification de l'état de BitLocker et de SmartScreen.
+
+    Configuration du BIOS/UEFI : Récupère les informations de la version et du fabricant du BIOS.
+
+    Groupes Active Directory : Affiche les groupes auxquels appartient l'utilisateur courant si le système est un membre d'un domaine Active Directory.
+
+    Sécurité des fichiers sensibles : Analyse des permissions sur les fichiers sensibles du système (ex : C:\Windows\System32\config\).
+
+Technologies utilisées
+
+    PowerShell (version 5.0 ou supérieure)
+
+    Accès administrateur sur la machine cible
+
+Prérequis
+
+    Un environnement Windows (version 7 ou plus récente)
+
+    Accès administrateur local ou équivalent sur la machine cible
+
+    PowerShell 5.0 ou supérieur
+
+Utilisation
+
+    Téléchargement : Téléchargez le script WinAuditScanner.ps1 sur la machine que vous souhaitez auditer.
+
+    Exécution : Ouvrez PowerShell avec les privilèges d'administrateur et exécutez le script :
+
+.\WinAuditScanner.ps1
+
+Résultats : Le script génère un fichier HTML contenant le rapport d'audit. Le fichier est nommé selon le format Audit-[NomDeLaMachine].html et est enregistré dans le répertoire où le script a été exécuté.
+
+Exemple de chemin d'accès au fichier :
+
+    .\Audit-Machine1.html
+
+Personnalisation
+
+    Vous pouvez ajuster le chemin de sauvegarde du rapport en modifiant la variable $reportPath.
+
+    Le titre du rapport peut également être personnalisé via la variable $reportTitle.
+
+Limitation et Avertissements
+
+    Précaution sur les données sensibles : Le script peut exposer des informations sensibles, telles que des mots de passe stockés dans le registre. Assurez-vous d'utiliser ce script dans un environnement de test ou dans un cadre légitime.
+
+    Niveau d'accès requis : Ce script nécessite des privilèges administratifs pour obtenir toutes les informations.
+
+Conclusion
+
+Le script WinAuditScanner est un outil puissant pour obtenir un instantané rapide des configurations de sécurité d'une machine Windows. Il est particulièrement utile pour effectuer des audits de sécurité, des analyses post-exploitation et des investigations légères en cas d'incident.
