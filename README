@@ -1,0 +1,14 @@
+# 🛡️ WinAuditScanner
+
+Script PowerShell pour auditer automatiquement un poste Windows et identifier des erreurs de configuration, failles potentielles ou indices de compromission.
+
+## 🚀 Fonctionnalités
+- Analyse des comptes utilisateurs, groupes admin
+- Liste des logiciels installés + détection d'outils suspects
+- Audit sécurité : UAC, RDP, firewall, Defender
+- Lecture rapide des logs critiques
+- Export possible des résultats en `.txt` ou `.csv`
+
+## 📦 Utilisation
+```bash
+.\WinAuditScanner.ps1 > audit-result.txt
